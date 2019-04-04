@@ -36,6 +36,31 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+#added bootstrap for styling the application
+gem 'bootstrap', '~> 4.1.3'
+
+#addded jquery-rails for bootstrap javascript to work
+gem 'jquery-rails'
+
+# Use Devise for authentication
+gem 'devise', '~> 4.2'
+
+# Use Omniauth Facebook plugin
+gem 'omniauth-facebook', '~> 4.0'
+
+# Use Omniauth Github plugin
+gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
+
+# Use Omniauth Google plugin
+gem 'omniauth-google-oauth2', '~> 0.4.1'
+
+# Use Omniauth Twitter plugin
+gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
+
+# Use ActiveRecord Sessions
+gem 'activerecord-session_store', '~> 1.0'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
