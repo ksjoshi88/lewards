@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  city: MyString
+  country: MyString
+  reward_points: 1
+  rewards_expiry_date: 2019-04-08 22:01:50
+
+two:
+  first_name: MyString
+  last_name: MyString
+  city: MyString
+  country: MyString
+  reward_points: 1
+  rewards_expiry_date: 2019-04-08 22:01:50
