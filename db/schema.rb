@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_04_08_163150) do
     t.string "city"
     t.string "country"
     t.integer "reward_points", default: 0
-    t.datetime "rewards_expiry_date", null: false
+    t.datetime "rewards_expiry_date"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
