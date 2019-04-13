@@ -1,1 +1,30 @@
 <h1> Bienvenue a Lewards</h1>
+
+<h3>Our Products</h3>
+<hr>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Interest rate</th>
+    <th>Reward points factor</th>
+    <th>Rewards validity duration</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.interest_rate %></td>
+      <td><%= product.reward_points_factor %></td>
+      <td><%= product.rewards_validity_duration %></td>
+
+      <td><%= link_to 'Purchase', edit_product_path(product) %></td>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>

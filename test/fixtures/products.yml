@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  interest_rate: 1
+  reward_points_factor: 1.5
+  rewards_validity_duration: 1
+
+two:
+  name: MyString
+  interest_rate: 1
+  reward_points_factor: 1.5
+  rewards_validity_duration: 1

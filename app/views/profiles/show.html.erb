@@ -19,16 +19,18 @@
   <strong>Country:</strong>
   <%= @profile.country %>
 </p>
+<%# if @profile.reward_points > 0 %>
+<!--    <p>-->
+<!--      <strong>Reward points:</strong>-->
+      <%#= @profile.reward_points %>
+<!--    </p>-->
 
-<p>
-  <strong>Reward points:</strong>
-  <%= @profile.reward_points %>
-</p>
+<!--    <p>-->
 
-<p>
-  <strong>Rewards expiry date:</strong>
-  <%= @profile.rewards_expiry_date.strftime("%d %b %Y") %>
-</p>
+<!--      <strong>Rewards expiry date:</strong>-->
+      <%#= @profile.rewards_expiry_date.strftime("%d %b %Y") %>
+<!--    </p>-->
+  <%#  end %>
 
 <%= link_to 'Edit Profile', edit_profile_path(@profile) %>
 
