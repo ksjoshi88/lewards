@@ -1,4 +1,9 @@
-<h1> Bienvenue a Lewards</h1>
+<h1> Bienvenue à Lewards</h1>
+
+<hr>
+<h3>Your total rewards: <h5><%= current_user.profile.reward_points %></h5></h3>
+<h6> Rewards Expire On: <b><%= current_user.profile.rewards_expiry_date.strftime("%d %b %Y") %></b></h6>
+<hr>
 
 <h3>Our Products</h3>
 <hr>

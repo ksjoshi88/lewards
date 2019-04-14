@@ -14,8 +14,14 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.user_id = current_user.id
+    calculate_reward_points
     respond_to do |format|
       if @purchase.save
+        #Add the reward points to the user profile
+        current_user.profile.reward_points += @purchase.reward_points
+        #Update the reward points validity
+        current_user.profile.rewards_expiry_date = Date.today + @purchase.product.rewards_validity_duration.months
+        current_user.profile.save
         format.html { redirect_to :purchases, notice: 'Purchase was successfull.' }
         format.json { render :show, status: :created, location: @purchase }
       else
@@ -30,6 +36,11 @@ class PurchasesController < ApplicationController
   end
 
   private
+
+  def calculate_reward_points
+    #the formula for reward point is loan_amount * reward_points_factor/100
+    @purchase.reward_points = @purchase.amount * (@purchase.product.reward_points_factor/100)
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def purchase_params
