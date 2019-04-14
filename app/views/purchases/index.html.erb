@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Your Purchases</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Loan Type</th>
+      <th>Interest rate</th>
+      <th>Loan Amount</th>
+      <th>Reward Points Earned</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchases.each do |purchase| %>
+      <tr>
+        <td><%= purchase.product.name %></td>
+        <td><%= purchase.product.interest_rate %></td>
+        <td><%= purchase.amount %></td>
+        <td><%= purchase.reward_points %></td>
+        <td><%= link_to 'Show', purchases_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Make new purchase', root_path %>

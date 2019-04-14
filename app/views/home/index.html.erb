@@ -22,7 +22,7 @@
       <td><%= product.reward_points_factor %></td>
       <td><%= product.rewards_validity_duration %></td>
 
-      <td><%= link_to 'Purchase', edit_product_path(product) %></td>
+      <td><%= link_to 'Purchase', new_purchase_path(product_id: product.id) %></td>
 
     </tr>
   <% end %>
