@@ -1,0 +1,14 @@
+
+development:
+  environment: development
+  FACEBOOK_APP_ID: 2199841360085609
+  FACEBOOK_APP_SECRET: '8af441f7b91f63de030fadcfe0cb68b0'
+  GOOGLE_APP_ID: '864575149248-d5a5gm32ltrict6epovlivmmds7p7dhm.apps.googleusercontent.com'
+  GOOGLE_APP_SECRET: 'rTVRxhWvnDXCbo7IgTM-EyB2'
+
+production:
+  environment: production
+  FACEBOOK_APP_ID: 2827702177270447
+  FACEBOOK_APP_SECRET: '36875aec6e6ec4b4229625022109c523'
+  GOOGLE_APP_ID: '864575149248-q1t9gd7r4j7q1at3bbv5four541uhoib.apps.googleusercontent.com'
+  GOOGLE_APP_SECRET: 'qO6RiHzXBbnCEawtWkDLo1BR'
