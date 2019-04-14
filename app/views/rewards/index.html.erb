@@ -1,0 +1,23 @@
+<h1>Rewards History</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Date of Purchase</th>
+    <th>Product</th>
+    <th>Reward Points Earned</th>
+    <th colspan="1"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @purchases.each do |purchase| %>
+    <tr>
+      <td><%= purchase.created_at.strftime("%d %b %Y") %></td>
+      <td><%= purchase.product.name %></td>
+      <td><%= purchase.reward_points %></td>
+      <td><%= link_to 'Show', purchases_path %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
