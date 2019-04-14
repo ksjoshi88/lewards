@@ -2,8 +2,10 @@
 
 <hr>
 <h3>Your total rewards: <b><%= current_user.profile.reward_points %></b></h3>
-<h6> Rewards Expire On: <b><%= current_user.profile.rewards_expiry_date.strftime("%d %b %Y") %></b></h6>
-<hr>
+<% if current_user.profile.reward_points > 0 %>
+  <h6> Rewards Expire On: <b><%= current_user.profile.rewards_expiry_date.strftime("%d %b %Y") %></b></h6>
+  <hr>
+<% end %>
 
 <h3>Our Products</h3>
 <hr>
