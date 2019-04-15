@@ -1,6 +1,54 @@
-<h1>Editing Profile</h1>
+<div class="row">
+  <div class="col-xs-12 col-md-6 mx-auto">
+    <div class="jumbotron">
+      <h1 class="display-6">Manage your Profile</h1>
+      <p class="lead"> More loan..more Rewards</p>
+      <hr class="my-2">
 
-<%= render 'form', profile: @profile %>
+      <%= form_with(model: @profile, local: true) do |f| %>
+        <% if @profile.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
 
-<%= link_to 'Show', @profile %> |
-<%= link_to 'Back', profiles_path %>
+            <ul>
+              <% @profile.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, class: 'form-control', autofocus: true, class: 'form-control', autocomplete: "First name" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, class: 'form-control', autofocus: true, class: 'form-control', autocomplete: "Last name" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :city %>
+          <%= f.text_field :city, class: 'form-control', autofocus: true, class: 'form-control', autocomplete: "City" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :country %>
+          <%= f.text_field :country, class: 'form-control', autofocus: true, class: 'form-control', autocomplete: "Country" %>
+        </div>
+
+        <br/>
+        <%= f.submit "Update", class: 'btn btn-primary' %> &nbsp; &nbsp;<%= link_to 'Show', @profile %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

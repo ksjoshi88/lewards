@@ -1,36 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-xs-12 col-md-6 mx-auto">
+    <div class="jumbotron">
+      <h1 class="display-6">Your Profile</h1>
+      <p class="lead"> More loans..more Rewards</p>
+      <hr class="my-2">
 
-<p>
-  <strong>First name:</strong>
-  <%= @profile.first_name %>
-</p>
+      <%= form_with(model: @profile, local: true) do |f| %>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.last_name %>
-</p>
+        <div class="form-group">
+          <%= f.label :first_name %> :
+          <strong><%= @profile.first_name %></strong>
+        </div>
 
-<p>
-  <strong>City:</strong>
-  <%= @profile.city %>
-</p>
+        <div class="form-group">
+          <%= f.label :last_name %>:
+          <strong><%= @profile.last_name %></strong>
+        </div>
 
-<p>
-  <strong>Country:</strong>
-  <%= @profile.country %>
-</p>
-<%# if @profile.reward_points > 0 %>
-<!--    <p>-->
-<!--      <strong>Reward points:</strong>-->
-      <%#= @profile.reward_points %>
-<!--    </p>-->
+        <div class="form-group">
+          <%= f.label :city %>:
+          <strong><%= @profile.city || 'N/A'  %></strong>
+        </div>
 
-<!--    <p>-->
+        <div class="form-group">
+          <%= f.label :country %>:
+          <strong><%= @profile.country || 'N/A'   %></strong>
+        </div>
 
-<!--      <strong>Rewards expiry date:</strong>-->
-      <%#= @profile.rewards_expiry_date.strftime("%d %b %Y") %>
-<!--    </p>-->
-  <%#  end %>
+        <br/>
 
-<%= link_to 'Edit Profile', edit_profile_path(@profile) %>
+        <%= link_to 'Edit Profile', edit_profile_path(@profile) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 

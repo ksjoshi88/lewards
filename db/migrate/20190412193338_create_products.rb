@@ -10,10 +10,9 @@ class CreateProducts < ActiveRecord::Migration[5.2]
 
     #this is to create seed data for Products
     Product.create(name: 'Car Loan', interest_rate: 12.0, reward_points_factor: 5.0, rewards_validity_duration: 12 )
-    Product.create(name: 'Personal Loan', interest_rate: 15.0, reward_points_factor: 5.0, rewards_validity_duration: 12 )
-    Product.create(name: 'Home Loan', interest_rate: 13.0, reward_points_factor: 5.0, rewards_validity_duration: 12 )
-    Product.create(name: 'Education Loan', interest_rate: 11.0, reward_points_factor: 5.0, rewards_validity_duration: 12 )
-    Product.create(name: 'Car Loan', interest_rate: 12.0, reward_points_factor: 5.0, rewards_validity_duration: 12 )
+    Product.create(name: 'Personal Loan', interest_rate: 15.0, reward_points_factor: 8.0, rewards_validity_duration: 12 )
+    Product.create(name: 'Home Loan', interest_rate: 13.0, reward_points_factor: 6.0, rewards_validity_duration: 12 )
+    Product.create(name: 'Education Loan', interest_rate: 11.0, reward_points_factor: 3.0, rewards_validity_duration: 12 )
 
   end
 
