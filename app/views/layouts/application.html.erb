@@ -32,6 +32,7 @@
       </ul>
     </div>
   </nav>
+  <div class="notice-bar">
   <% unless (flash[:alert].nil?)%>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <%= flash[:alert] %>
@@ -40,6 +41,7 @@
       </button>
     </div>
   <% end %>
+  </div>
   <div class="container">
     <%= yield %>
   </div>

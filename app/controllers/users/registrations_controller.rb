@@ -12,9 +12,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    profile = Profile.new
-    profile.user_id = self.resource.id
-    profile.save!
+    if self.resource.valid?
+      profile = Profile.new
+      profile.user_id = self.resource.id
+      profile.first_name = params[:user][:first_name]
+      profile.last_name = params[:user][:last_name]
+      profile.save!
+    end
   end
 
   # GET /resource/edit
@@ -45,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
   # end
 
   # If you have extra params to permit, append them to the sanitizer.

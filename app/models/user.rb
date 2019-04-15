@@ -6,7 +6,9 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   has_one :profile
-  has_many :purchases
+  has_many     :purchases
+
+  attr_accessor :first_name, :last_name
 
   # a method to fetch user data from third-party IDPs
 

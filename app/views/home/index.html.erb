@@ -1,38 +1,45 @@
-<h1> Bienvenue à Lewards</h1>
-
-<hr>
-<h3>Your total rewards: <b><%= current_user.profile.reward_points %></b></h3>
-<% if current_user.profile.reward_points > 0 %>
-  <h6> Rewards Expire On: <b><%= current_user.profile.rewards_expiry_date.strftime("%d %b %Y") %></b></h6>
-  <%= link_to 'Rewards History', rewards_path() %>
-  <hr>
-<% end %>
-
-<h3>Our Products</h3>
-<hr>
-
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Interest rate</th>
-    <th>Reward points factor</th>
-    <th>Rewards validity duration</th>
-    <th colspan="2"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @products.each do |product| %>
-    <tr>
-      <td><%= product.name %></td>
-      <td><%= product.interest_rate %></td>
-      <td><%= product.reward_points_factor %></td>
-      <td><%= product.rewards_validity_duration %></td>
-
-      <td><%= link_to 'Purchase', new_purchase_path(product_id: product.id) %></td>
-
-    </tr>
+<div class="jumbotron">
+  <h1 class="display-4"><%= current_user.profile.first_name + "'s" || "User's" %> Dashboard</h1>
+  <h3>Your total rewards: <b><%= current_user.profile.reward_points %></b></h3>
+  <% if current_user.profile.reward_points > 0 %>
+    <h6> Rewards Expire On: <b><%= current_user.profile.rewards_expiry_date.strftime("%d %b %Y") %></b></h6>
+    <%= link_to 'Rewards History', rewards_path() %>
+    <hr>
   <% end %>
-  </tbody>
-</table>
+</div>
+
+<h3>Our Loan Products</h3>
+<hr>
+
+  <table class="table table-bordered">
+    <thead class="thead-light">
+    <tr>
+      <th>Name</th>
+      <th>Interest rate</th>
+      <th>Rewards Percentage</th>
+      <th>Rewards validity duration</th>
+      <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.interest_rate %></td>
+        <td><%= product.reward_points_factor %></td>
+        <td><%= product.rewards_validity_duration.to_s + " months" %></td>
+
+        <td><%= link_to 'Purchase', new_purchase_path(product_id: product.id) %></td>
+
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
+
+
+
+
+
