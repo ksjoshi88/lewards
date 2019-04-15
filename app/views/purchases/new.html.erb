@@ -9,9 +9,7 @@
 
       <%= form_with(model: @purchase, local: true) do |f| %>
         <% if @purchase.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this @purchase from being saved:</h2>
-
+          <div class="error_explanation">
             <ul>
               <% @purchase.errors.full_messages.each do |message| %>
                 <li><%= message %></li>

@@ -14,7 +14,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.user_id = current_user.id
-    calculate_reward_points
+    calculate_reward_points if @purchase.amount
     respond_to do |format|
       if @purchase.save
         #Add the reward points to the user profile
@@ -22,11 +22,11 @@ class PurchasesController < ApplicationController
         #Update the reward points validity
         current_user.profile.rewards_expiry_date = Date.today + @purchase.product.rewards_validity_duration.months
         current_user.profile.save
-        format.html { redirect_to :rewards, notice: 'Purchase was successfull.' }
-        format.json { render :show, status: :created, location: @purchase }
+        format.html {redirect_to :rewards, notice: 'Purchase was successfull.'}
+        format.json {render :show, status: :created, location: @purchase}
       else
-        format.html { render :new }
-        format.json { render json: @purchase.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @purchase.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -39,7 +39,7 @@ class PurchasesController < ApplicationController
 
   def calculate_reward_points
     #the formula for reward point is loan_amount * reward_points_factor/100
-    @purchase.reward_points = @purchase.amount * (@purchase.product.reward_points_factor/100)
+    @purchase.reward_points = @purchase.amount * (@purchase.product.reward_points_factor / 100)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
