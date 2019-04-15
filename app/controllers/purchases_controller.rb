@@ -22,7 +22,7 @@ class PurchasesController < ApplicationController
         #Update the reward points validity
         current_user.profile.rewards_expiry_date = Date.today + @purchase.product.rewards_validity_duration.months
         current_user.profile.save
-        format.html { redirect_to :purchases, notice: 'Purchase was successfull.' }
+        format.html { redirect_to :rewards, notice: 'Purchase was successfull.' }
         format.json { render :show, status: :created, location: @purchase }
       else
         format.html { render :new }
@@ -44,6 +44,6 @@ class PurchasesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def purchase_params
-    params.require(:purchase).permit(:user_id, :product_id, :amount)
+    params.require(:purchase).permit(:user_id, :product_id, :amount, :loan_period)
   end
 end

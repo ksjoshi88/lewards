@@ -1,5 +1,66 @@
-<h1>New Loan Purchase</h1>
+<div class="row">
+  <div class="col-xs-12 col-md-6 mx-auto">
+    <%= link_to 'Back', root_path %>
+    <div class="jumbotron">
+      <p class="lead"> Application for </p>
+      <h1 class="display-6"><%= @purchase.product.name  %></h1>
+      <hr class="my-2">
 
-<%= render 'form', purchase: @purchase %>
 
-<%= link_to 'Back', root_path %>
+      <%= form_with(model: @purchase, local: true) do |f| %>
+        <% if @purchase.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this @purchase from being saved:</h2>
+
+            <ul>
+              <% @purchase.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.label :interest_rate %>
+          <strong> <%= " : " + @purchase.product.interest_rate.to_i.to_s + "%" %></strong>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :loan_amount %>:
+          <%= f.text_field :amount, class: 'form-control', autofocus: true, class: 'form-control', autocomplete: "amount" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :loan_period %>:
+          <input type="range" name="purchase[loan_period]" class="custom-range" min="0" max="15" step="1" id="purchase_loan_period">
+          <div id="loan_period_value"></div>
+        </div>
+
+        <%= f.hidden_field :product_id, value: @purchase.product.id %>
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1" required>
+          <label class="custom-control-label" for="customCheck1">I agree with the <a href="#">terms and conditions</a></label>
+        </div>
+
+        <br/>
+        <%= f.submit "Submit", class: 'btn btn-primary' %> &nbsp; &nbsp;
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+    var slider = document.getElementById("purchase_loan_period");
+    var output = document.getElementById("loan_period_value");
+    output.innerHTML = slider.value + ' years'; // Display the default slider value
+
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+        output.innerHTML = this.value + ' years';
+    }
+
+</script>
+
+
+
+

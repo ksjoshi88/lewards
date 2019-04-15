@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_14_174925) do
+ActiveRecord::Schema.define(version: 2019_04_15_184339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_04_14_174925) do
     t.integer "reward_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "loan_period", default: 1, null: false
   end
 
   create_table "sessions", force: :cascade do |t|
