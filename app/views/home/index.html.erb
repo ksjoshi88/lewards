@@ -6,7 +6,10 @@
     <%= link_to 'Rewards History', rewards_path() %>
     <hr>
   <% end %>
-     <%= link_to 'Add New Product', new_product_path() if current_user.is_admin? %>
+  <% if current_user.is_admin? %>
+    <%= link_to 'Add New Product', new_product_path() %> &nbsp;|&nbsp;
+    <%= link_to 'View Reports', show_reward_reports_path() %>
+  <% end %>
 </div>
 
 

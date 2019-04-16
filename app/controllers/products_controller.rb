@@ -65,11 +65,7 @@ class ProductsController < ApplicationController
 
   private
 
-    def authenticate_admin
-      unless current_user.is_admin?
-        redirect_to root_path, alert: "You do not have the access for that page"
-      end
-    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
