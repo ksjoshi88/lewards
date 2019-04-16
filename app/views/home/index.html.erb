@@ -1,34 +1,61 @@
 <div class="jumbotron">
   <h1 class="display-4"><%= current_user.profile.first_name || "User" %> Dashboard</h1>
-  <h3>Your total rewards: <b><%= current_user.profile.reward_points %></b></h3>
   <% if current_user.profile.reward_points > 0 %>
+    <h3>Your current rewards: <b><%= current_user.profile.reward_points %></b></h3>
     <h6> Rewards Expire On: <b><%= current_user.profile.rewards_expiry_date.strftime("%d %b %Y") %></b></h6>
     <%= link_to 'Rewards History', rewards_path() %>
     <hr>
   <% end %>
+     <%= link_to 'Add New Product', new_product_path() if current_user.is_admin? %>
 </div>
+
+
 
 <h3>Our Products</h3>
 <hr>
 
 
-<div class="card-deck mb-4 text-center">
-  <% @products.each do |product| %>
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal"><%= product.name %></h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title"><%= product.reward_points_factor.to_i %>%
-          <small class="text-muted"> reward points</small>
-        </h1>
-        <ul class="list-unstyled mt-4 mb-6">
-          <li>Rewards validity: <%= product.rewards_validity_duration %> months,</li>
-          <li>Just <%= product.interest_rate.to_i %>% interest rate</li>
-        </ul>
-        <%= link_to 'Apply Now', new_purchase_path(product_id: product.id), class: 'btn btn-success' %>
+<% if current_user.is_admin? %>
+  <div class="card-deck mb-4 text-center">
+    <% @products.each do |product| %>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal"><%= product.name %></h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title"><%= product.reward_points_factor.to_i %>%
+            <small class="text-muted"> reward points</small>
+          </h1>
+          <ul class="list-unstyled mt-4 mb-6">
+            <li>Rewards validity: <%= product.rewards_validity_duration %> months,</li>
+            <li>Just <%= product.interest_rate.to_i %>% interest rate</li>
+          </ul>
+          <%= link_to 'Edit Product', edit_product_path(id: product.id), class: 'btn btn-success' %>
 
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% else %>
+
+  <div class="card-deck mb-4 text-center">
+    <% @products.each do |product| %>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal"><%= product.name %></h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title"><%= product.reward_points_factor.to_i %>%
+            <small class="text-muted"> reward points</small>
+          </h1>
+          <ul class="list-unstyled mt-4 mb-6">
+            <li>Rewards validity: <%= product.rewards_validity_duration %> months,</li>
+            <li>Just <%= product.interest_rate.to_i %>% interest rate</li>
+          </ul>
+          <%= link_to 'Apply Now', new_purchase_path(product_id: product.id), class: 'btn btn-success' %>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
