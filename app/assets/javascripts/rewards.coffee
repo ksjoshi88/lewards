@@ -6,7 +6,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 class LEWARDS.AdminReports
   constructor: (@container) ->
-    google.charts.load("current", {packages:["corechart"]});
+    google.charts.load("current", {packages:["corechart","bar"]});
     google.charts.setOnLoadCallback(@getRewardsDistribution);
 
 #  init: ->
@@ -21,17 +21,18 @@ class LEWARDS.AdminReports
         type: "GET"
         url: '/get_rewards_distribution/'
         success: (data) =>
-          @drawChart(data, 'Rewards Distribution')
+          @drawDistributionChart(data.rw, 'Rewards Distribution')
+          @drawComparisonChart(data.rc,'Rewards Vs Loans')
         error: (data) =>
           alert(data)
     return
 
-  drawChart:(projectData, chartTitle) =>
+  drawDistributionChart:(projectData, chartTitle) =>
     result = []
     projectData.map (m) -> delete(m.id)
     for i of projectData
       result.push [projectData[i].name, projectData[i].sum]
-    result.unshift(['Project','Rewards'])
+    result.unshift(['Product','Reward Points'])
     data = google.visualization.arrayToDataTable(result)
     options = {
       title: chartTitle,
@@ -39,3 +40,20 @@ class LEWARDS.AdminReports
     }
     chart = new google.visualization.PieChart(document.getElementById('rewards-distribution-container'))
     chart.draw(data, options)
+
+  drawComparisonChart:(projectData, chartTitle) =>
+    result = []
+    projectData.map (m) -> delete(m.id)
+    for i of projectData
+      result.push [projectData[i].name, projectData[i].amount,projectData[i].rewards, ]
+    result.unshift(['Product','Loan Amount','Reward Points Given'])
+    data = google.visualization.arrayToDataTable(result)
+    options = {
+      chart: {
+        title: 'Loan Type',
+        subtitle: 'Loan Amount, Reward Points',
+        is3D: true
+      }
+    }
+    chart = new google.visualization.BarChart(document.getElementById('rewards-comparison-container'))
+    chart.draw(data, google.charts.Bar.convertOptions(options));
